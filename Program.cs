@@ -1,4 +1,4 @@
-using AppWebAntigravity.Components;
+using AppWebArthurBraga.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 
