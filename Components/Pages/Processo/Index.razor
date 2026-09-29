@@ -1,4 +1,5 @@
 @page "/processos"
+@rendermode InteractiveServer
 @using AppWebArthurBraga.Model
 @using AppWebArthurBraga.DAO
 @inject ProcessoDAO ProcessoDAO
@@ -7,13 +8,18 @@
 
 <div class="d-flex justify-content-between align-items-center mb-4">
     <div>
-        <h2>Consulta de Processos</h2>
+        <h2 class="fw-bold mb-1">Consulta de Processos</h2>
+    </div>
+    <div>
+        <a href="/processos/cadastro" class="btn btn-primary">
+            <i class="bi bi-plus-lg"></i> Novo Processo
+        </a>
     </div>
 </div>
 
 <div class="custom-table-card">
     <div class="table-responsive">
-        <table class="table align-middle">
+        <table class="table align-middle mb-0">
             <thead>
                 <tr>
                     <th>Id</th>
@@ -25,16 +31,25 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var processo in processos)
+                @if (processos.Count == 0)
                 {
                     <tr>
-                        <td>@processo.Id</td>
-                        <td>@processo.Numero</td>
-                        <td>@processo.Interessado</td>
-                        <td>@processo.Assunto</td>
-                        <td>@processo.Situacao</td>
-                        <td></td>
+                        <td colspan="6" class="text-center text-muted py-4">Nenhum processo cadastrado.</td>
                     </tr>
+                }
+                else
+                {
+                    @foreach (var processo in processos)
+                    {
+                        <tr>
+                            <td>@processo.Id</td>
+                            <td>@processo.Numero</td>
+                            <td>@processo.Interessado</td>
+                            <td>@processo.Assunto</td>
+                            <td>@processo.Situacao</td>
+                            <td></td>
+                        </tr>
+                    }
                 }
             </tbody>
         </table>

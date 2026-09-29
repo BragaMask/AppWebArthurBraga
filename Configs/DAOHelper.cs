@@ -31,6 +31,13 @@ namespace AppWebArthurBraga.Configs
             return value;
         }
 
+        // Lê uma data como DateOnly?; se a coluna for NULL, devolve null
+        public static DateOnly? GetDateOnly(MySqlDataReader reader, string column_name)
+        {
+            DateTime? dt = GetDateTime(reader, column_name);
+            return dt.HasValue ? DateOnly.FromDateTime(dt.Value) : null;
+        }
+
         // Indica se uma coluna está NULL
         public static bool IsNull(MySqlDataReader reader, string column_name)
         {
